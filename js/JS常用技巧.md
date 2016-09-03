@@ -1,15 +1,42 @@
 # JS常用技巧
 
-### 构造单例模式
-js构造单例有很多种方法，这里举个个人比较喜欢的方式，这种方式的好处是`new Singleton()`和` Singleton()`得到的是同一个引用。
+### 创建实例
+这样可以使`new Clazz()`和` Clazz()`都返回一个新的实例。
 
 ```js
-function Singleton(opts){
-    if(!(this instanceof Singleton){
-        return new Singleton(opts);
+function Clazz(opts){
+    if(!(this instanceof Clazz)){
+        return new Clazz(opts);
     }
     //do something here
-
+    this.opts = opts;
 }
 ```
 
+### 单例模式
+
+可以直接像下面这样，每次返回的都是同一个对象：
+```js
+var Singleton = {};
+//do something here
+Singleton.name = 'foo';
+
+```
+
+或者用ES6的class：
+
+```js
+class Singleton{
+    constructor(props){
+        if(!Singleton.instance ){
+            //do something here
+            this.props = props;
+            //...
+            Singleton.instance = this;
+        }
+        return Singleton.instance;
+    }
+}
+
+console.log(new Singleton('brave man') === new Singletom('zhouyong')); //true
+```
