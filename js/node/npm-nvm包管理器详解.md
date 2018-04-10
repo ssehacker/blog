@@ -84,6 +84,13 @@ nvm ls
 which node
 ```
 
+### 镜像
+国内nvm安装node速度也有点慢，可以使用淘宝源：
+```
+export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
+```
+
+
 更多内容，请直接参见[nvm官网](https://github.com/creationix/nvm#usage)
 
 
