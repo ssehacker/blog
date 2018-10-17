@@ -1,9 +1,9 @@
-#从javascript中的原型谈起
+# 从javascript中的原型谈起
 
-###问题
+### 问题
 作为一门面向对象编程的语言，javascript一直表现的令人难以理解，尤其是先学了java或者c++之后。下面，深入的总结一下js是如何实现面向对象编程的。
 
-###创建对象
+### 创建对象
 在javascript中，如果需要创建一个对象，可以如下实现。
 ```javascript
 var o1 = {};
@@ -34,7 +34,7 @@ var p2 = newPolyfill(Person, ['xiaohong']);
 ```
 理解了new的作用，在谈prototype之前，我们先谈谈javascript中的实例变量，类变量，实例函数，类函数。
 
-###实例变量，实例函数
+### 实例变量，实例函数
 学过java或者c++等面向对象编程语言的人应该对实例变量，类变量，实例函数，类函数这几个概念不会陌生，其实，javascript中也有等价的概念。
 还是用上面的Person函数来叙述， 其中的 this.name 就是实例变量，this.say就是实例方法，这两者都是仅在实例对象中独享的，p1.name 和 p2.name彼此相互独立，不会互相干扰。
 下面来看看类变量和类函数：
@@ -67,14 +67,14 @@ prototype就是原型，我们创建的每个函数都有一个prototype属性�
 prototype的好处：
 避免了同一份实例函数在内存中的多份拷贝(如果需求就是需要拷贝的，则不能用prototype，直接在构造函数中赋值即可)。
 
-###原型链
+### 原型链
 原型链：当从一个对象那里调取属性或方法时，如果该对象自身不存在这样的属性或方法，就会去自己关联的prototype对象那里寻找，如果prototype没有，就会去prototype关联的前辈prototype那里寻找，如果再没有则继续查找Prototype.Prototype引用的对象，依次类推，直到Prototype.….Prototype为undefined（Object的Prototype就是undefined）从而形成了所谓的“原型链”。
 
 原型链的好处：
 1.避免了重复定义,对象中的方法可以从父类中继承而来。这也是面向对象语言中继承的好处。
 例如，person.say().如果在person中没有say方法，那么它会在它的prototype中寻找，如果还没找到，则会在prototype的prototype中寻找，依次类推。
 
-###总结
+### 总结
 通过prototype， javascript可以解决面向对象编程中实例对象中的变量共享问题,同时也使得对象和对象之间不会彼此孤立（为继承做准备）。
 下一节，将讲述javascript中是如何实现继承的。
 
