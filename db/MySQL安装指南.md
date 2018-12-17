@@ -24,6 +24,17 @@ SET PASSWORD = PASSWORD('your_new_password');
 ### 创建用户及数据库
 同样按照[官网文档](https://www.linode.com/docs/databases/mysql/how-to-install-mysql-on-centos-7/)操作。
 
+
+#### 创建用户
+```
+CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';
+```
+
+```
+flush privileges; # 这是mysql的bug，需要强行flush，否则create User不会生效。
+```
+
+
 ### utf8编码问题
 ```shell
 Incorrect string value: '\xE7\xA8\x8B\xE5\xBA\x8F...' for column 'course' at row 1
